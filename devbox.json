@@ -2,7 +2,8 @@
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/main/.schema/devbox.schema.json",
   "packages": [
     "mongodb@7.0",
-    "mongodb-tools"
+    "mongodb-tools",
+    "mongodb-compass"
   ],
   "shell": {
     "init_hook": [
