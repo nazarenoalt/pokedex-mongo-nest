@@ -1,0 +1,27 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/main/.schema/devbox.schema.json",
+  "packages": [
+    "mongodb@7.0",
+    "mongodb-tools"
+  ],
+  "shell": {
+    "init_hook": [
+      "echo 'Configurando MongoDB...'",
+      "mkdir -p ./mongo",
+      "echo 'MongoDB configurado en puerto 27401'"
+    ],
+    "scripts": {
+      "start-db": [
+        "mongod --dbpath ./mongo --port 27401 --bind_ip_all"
+      ],
+      "stop-db": [
+        "mongod --shutdown --dbpath ./mongo"
+      ]
+    }
+  },
+  "env": {
+    "MONGODB_DATABASE": "nest-pokemon",
+    "MONGODB_PORT": "27401",
+    "MONGO_DATA_DIR": "./mongo"
+  }
+}
