@@ -5,9 +5,57 @@
       "last_modified": "2025-09-28T14:42:27Z",
       "resolved": "github:NixOS/nixpkgs/647e5c14cbd5067f44ac86b74f014962df460840?lastModified=1759070547&narHash=sha256-JVZl8NaVRYb0%2B381nl7LvPE%2BA774%2FdRpif01FKLrYFQ%3D"
     },
+    "mongodb-compass@latest": {
+      "last_modified": "2025-09-18T16:33:27Z",
+      "resolved": "github:NixOS/nixpkgs/f4b140d5b253f5e2a1ff4e5506edbf8267724bde#mongodb-compass",
+      "source": "devbox-search",
+      "version": "1.46.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/5fllrvka31f939141x5yb2w9dv3bwc5a-mongodb-compass-1.46.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/5fllrvka31f939141x5yb2w9dv3bwc5a-mongodb-compass-1.46.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/arzi8wciy3zalx9k0mgj90r4d0smp7yv-mongodb-compass-1.46.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/arzi8wciy3zalx9k0mgj90r4d0smp7yv-mongodb-compass-1.46.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/438z9z4cd1a9w4s3r8ddxjvw8yqnpmh4-mongodb-compass-1.46.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/438z9z4cd1a9w4s3r8ddxjvw8yqnpmh4-mongodb-compass-1.46.0"
+        }
+      }
+    },
     "mongodb-tools": {
       "resolved": "github:NixOS/nixpkgs/647e5c14cbd5067f44ac86b74f014962df460840?narHash=sha256-JVZl8NaVRYb0%2B381nl7LvPE%2BA774%2FdRpif01FKLrYFQ%3D#mongodb-tools",
-      "source": "nixpkg"
+      "source": "nixpkg",
+      "systems": {
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "path": "/nix/store/m9zq6jpddm9jx0kv91cw3w2sr4hrwajg-mongo-tools-100.13.0",
+              "default": true
+            }
+          ]
+        }
+      }
     },
     "mongodb@7.0": {
       "last_modified": "2025-09-18T16:33:27Z",
