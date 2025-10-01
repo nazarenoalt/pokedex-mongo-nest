@@ -7,13 +7,11 @@
   ],
   "shell": {
     "init_hook": [
-      "echo 'Configurando MongoDB...'",
-      "mkdir -p ./mongo",
-      "echo 'MongoDB configurado en puerto 21909'"
+      "mkdir -p ./mongo"
     ],
     "scripts": {
       "start-db": [
-        "mongod --dbpath ./mongo --port 21909 --bind_ip_all"
+        "mongod --dbpath ./mongo --port 27017 --bind_ip_all"
       ],
       "stop-db": [
         "mongod --shutdown --dbpath ./mongo"
@@ -22,7 +20,7 @@
   },
   "env": {
     "MONGODB_DATABASE": "nest-pokemon",
-    "MONGODB_PORT":     "21909",
+    "MONGODB_PORT":     "27017",
     "MONGO_DATA_DIR":   "./mongo"
   }
 }
