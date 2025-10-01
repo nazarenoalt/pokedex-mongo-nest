@@ -1,0 +1,12 @@
+* {
+  font: Arial, Helvetica, Sans-Serif
+}
+
+body {
+  background-color: gray;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 30px;
+}
