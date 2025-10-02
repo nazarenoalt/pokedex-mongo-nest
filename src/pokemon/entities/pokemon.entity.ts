@@ -12,11 +12,6 @@ export class Pokemon extends Document {
     unique: true,
     index: true,
   })
-  url: string;
-  @Prop({
-    unique: true,
-    index: true,
-  })
   number: number;
 }
 
