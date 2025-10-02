@@ -1,10 +1,9 @@
 * {
-  font: Arial, Helvetica, Sans-Serif
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
   background-color: gray;
-  padding: 20px;
 }
 
 h1 {
