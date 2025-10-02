@@ -1,5 +1,5 @@
 {
-  "name": "pokedex-mongogit remote add origin git@github.com:nazarenoalt/pokedex-mongo-nest.git-nest",
+  "name": "pokedex-mongo",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -25,6 +25,7 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/mongoose": "^11.0.3",
     "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/serve-static": "^5.0.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.2",
     "mongoose": "^8.18.3",
