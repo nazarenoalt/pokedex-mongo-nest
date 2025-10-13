@@ -10,6 +10,7 @@ import { isValidObjectId, Model } from 'mongoose';
 import { Pokemon } from './entities/pokemon.entity';
 import { InjectModel } from '@nestjs/mongoose';
 import { MongoServerError } from 'mongodb';
+import { MONGO_ERROR_CODE } from 'src/constants/code-errors';
 @Injectable()
 export class PokemonService {
   constructor(
@@ -60,8 +61,33 @@ export class PokemonService {
     return pokemon;
   }
 
-  async update(id: number, updatePokemonDto: UpdatePokemonDto) {
-    return `This action updates a #${id} pokemon`;
+  async update(term: string, updatePokemonDto: UpdatePokemonDto) {
+    const pokemon: Pokemon = await this.findOne(term);
+    if (updatePokemonDto.name) {
+      updatePokemonDto.name = updatePokemonDto.name.toLowerCase();
+    }
+
+    try {
+      const updatedPokemon: Pokemon = await pokemon.updateOne(
+        updatePokemonDto,
+        {
+          new: true,
+        },
+      );
+
+      if (!updatedPokemon) throw new NotFoundException(`Pokemon not found.`);
+
+      return { ...pokemon.toJSON(), ...updatePokemonDto };
+    } catch (error) {
+      if (!(error instanceof MongoServerError)) return;
+
+      if (error.code === MONGO_ERROR_CODE.DUPLICATE_KEY) {
+        throw new BadRequestException(
+          `Some of the fields cannot be inserted due they must be unique. ${JSON.stringify(error.keyValue)}`,
+        );
+      }
+      throw new InternalServerErrorException(`Error updating the pokemon.`);
+    }
   }
 
   async remove(id: number) {
