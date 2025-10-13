@@ -24,16 +24,8 @@ export class PokemonService {
     try {
       await this.pokemonModel.create(createPokemonDto);
     } catch (error) {
-      if (error instanceof MongoServerError && error?.code == '11000') {
-        throw new BadRequestException(
-          `This pokemon already exists in the database: ${JSON.stringify(error.keyValue)}`,
-        );
-      }
-      throw new InternalServerErrorException(
-        'Something wrong happened creating the pokemon.',
-      );
+      this.handleExceptions(error);
     }
-
     return createPokemonDto;
   }
 
@@ -74,33 +66,20 @@ export class PokemonService {
           new: true,
         },
       );
-
       if (!updatedPokemon) throw new NotFoundException(`Pokemon not found.`);
 
       return { ...pokemon.toJSON(), ...updatePokemonDto };
     } catch (error) {
-      if (!(error instanceof MongoServerError)) return;
-
-      if (error.code === MONGO_ERROR_CODE.DUPLICATE_KEY) {
-        throw new BadRequestException(
-          `Some of the fields cannot be inserted due they must be unique. ${JSON.stringify(error.keyValue)}`,
-        );
-      }
-      throw new InternalServerErrorException(`Error updating the pokemon.`);
+      this.handleExceptions(error);
     }
   }
 
-  async remove(id: number) {
-    return `This action removes a #${id} pokemon`;
-  }
-
-  async rebuildIndexes() {
-    // Eliminar todos los índices excepto _id
-    await this.pokemonModel.collection.dropIndexes();
-
-    // Recrear los índices según tu schema actual
-    await this.pokemonModel.syncIndexes();
-
-    return { message: 'Indexes rebuilt successfully' };
+  private handleExceptions(error: MongoServerError) {
+    if (error.code === MONGO_ERROR_CODE.DUPLICATE_KEY) {
+      throw new BadRequestException(
+        `Some of the fields cannot be inserted due they must be unique. ${JSON.stringify(error.keyValue)}`,
+      );
+    }
+    throw new InternalServerErrorException(`Error updating the pokemon.`);
   }
 }
