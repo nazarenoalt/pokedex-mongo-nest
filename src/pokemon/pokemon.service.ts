@@ -74,6 +74,11 @@ export class PokemonService {
     }
   }
 
+  async remove(id: string) {
+    const pokemon = await this.findOne(id);
+    await pokemon.deleteOne();
+  }
+
   private handleExceptions(error: MongoServerError) {
     if (error.code === MONGO_ERROR_CODE.DUPLICATE_KEY) {
       throw new BadRequestException(
