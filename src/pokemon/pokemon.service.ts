@@ -60,6 +60,7 @@ export class PokemonService {
     }
 
     try {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const updatedPokemon: Pokemon = await pokemon.updateOne(
         updatePokemonDto,
         {
