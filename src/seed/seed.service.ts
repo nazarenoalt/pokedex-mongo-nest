@@ -38,12 +38,10 @@ export class SeedService {
     );
 
     try {
-      this.pokemonModel.insertMany(pokemonList);
+      await this.pokemonModel.insertMany(pokemonList);
     } catch (error) {
       if (error.code === MongoErrorCode.DUPLICATE_KEY) {
-        throw new BadRequestException(
-          MongoErrorMessages[MongoErrorCode.DUPLICATE_KEY],
-        );
+        throw new BadRequestException(error.message);
       }
     }
   }
