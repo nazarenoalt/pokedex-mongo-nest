@@ -22,10 +22,10 @@ export class SeedService {
     private readonly pokemonModel: Model<Pokemon>,
   ) {}
 
-  async insertPokemons() {
+  async insertPokemons(limit: number = 20) {
     const fetcher = new Fetcher();
     const retrievedPokemons: IPokemonApiResponse = await fetcher.get(
-      'https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20',
+      `https://pokeapi.co/api/v2/pokemon/?limit=${limit}`,
     );
 
     const pokemonList: CreatePokemonDto[] = retrievedPokemons?.results?.map(
@@ -44,5 +44,9 @@ export class SeedService {
         throw new BadRequestException(error.message);
       }
     }
+  }
+
+  async deleteAllPokemons() {
+    await this.pokemonModel.deleteMany();
   }
 }
